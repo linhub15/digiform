@@ -12,9 +12,7 @@ import { createServerRootRoute } from '@tanstack/react-start/server'
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as DemoStartServerFuncsRouteImport } from './routes/demo.start.server-funcs'
-import { Route as DemoStartApiRequestRouteImport } from './routes/demo.start.api-request'
-import { ServerRoute as ApiDemoNamesServerRouteImport } from './routes/api.demo-names'
+import { ServerRoute as ApiUploadthingServerRouteImport } from './routes/api/uploadthing'
 
 const rootServerRouteImport = createServerRootRoute()
 
@@ -23,71 +21,53 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const DemoStartServerFuncsRoute = DemoStartServerFuncsRouteImport.update({
-  id: '/demo/start/server-funcs',
-  path: '/demo/start/server-funcs',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const DemoStartApiRequestRoute = DemoStartApiRequestRouteImport.update({
-  id: '/demo/start/api-request',
-  path: '/demo/start/api-request',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ApiDemoNamesServerRoute = ApiDemoNamesServerRouteImport.update({
-  id: '/api/demo-names',
-  path: '/api/demo-names',
+const ApiUploadthingServerRoute = ApiUploadthingServerRouteImport.update({
+  id: '/api/uploadthing',
+  path: '/api/uploadthing',
   getParentRoute: () => rootServerRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/demo/start/api-request': typeof DemoStartApiRequestRoute
-  '/demo/start/server-funcs': typeof DemoStartServerFuncsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/demo/start/api-request': typeof DemoStartApiRequestRoute
-  '/demo/start/server-funcs': typeof DemoStartServerFuncsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/demo/start/api-request': typeof DemoStartApiRequestRoute
-  '/demo/start/server-funcs': typeof DemoStartServerFuncsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/demo/start/api-request' | '/demo/start/server-funcs'
+  fullPaths: '/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/demo/start/api-request' | '/demo/start/server-funcs'
-  id: '__root__' | '/' | '/demo/start/api-request' | '/demo/start/server-funcs'
+  to: '/'
+  id: '__root__' | '/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  DemoStartApiRequestRoute: typeof DemoStartApiRequestRoute
-  DemoStartServerFuncsRoute: typeof DemoStartServerFuncsRoute
 }
 export interface FileServerRoutesByFullPath {
-  '/api/demo-names': typeof ApiDemoNamesServerRoute
+  '/api/uploadthing': typeof ApiUploadthingServerRoute
 }
 export interface FileServerRoutesByTo {
-  '/api/demo-names': typeof ApiDemoNamesServerRoute
+  '/api/uploadthing': typeof ApiUploadthingServerRoute
 }
 export interface FileServerRoutesById {
   __root__: typeof rootServerRouteImport
-  '/api/demo-names': typeof ApiDemoNamesServerRoute
+  '/api/uploadthing': typeof ApiUploadthingServerRoute
 }
 export interface FileServerRouteTypes {
   fileServerRoutesByFullPath: FileServerRoutesByFullPath
-  fullPaths: '/api/demo-names'
+  fullPaths: '/api/uploadthing'
   fileServerRoutesByTo: FileServerRoutesByTo
-  to: '/api/demo-names'
-  id: '__root__' | '/api/demo-names'
+  to: '/api/uploadthing'
+  id: '__root__' | '/api/uploadthing'
   fileServerRoutesById: FileServerRoutesById
 }
 export interface RootServerRouteChildren {
-  ApiDemoNamesServerRoute: typeof ApiDemoNamesServerRoute
+  ApiUploadthingServerRoute: typeof ApiUploadthingServerRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -99,29 +79,15 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/demo/start/server-funcs': {
-      id: '/demo/start/server-funcs'
-      path: '/demo/start/server-funcs'
-      fullPath: '/demo/start/server-funcs'
-      preLoaderRoute: typeof DemoStartServerFuncsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/demo/start/api-request': {
-      id: '/demo/start/api-request'
-      path: '/demo/start/api-request'
-      fullPath: '/demo/start/api-request'
-      preLoaderRoute: typeof DemoStartApiRequestRouteImport
-      parentRoute: typeof rootRouteImport
-    }
   }
 }
 declare module '@tanstack/react-start/server' {
   interface ServerFileRoutesByPath {
-    '/api/demo-names': {
-      id: '/api/demo-names'
-      path: '/api/demo-names'
-      fullPath: '/api/demo-names'
-      preLoaderRoute: typeof ApiDemoNamesServerRouteImport
+    '/api/uploadthing': {
+      id: '/api/uploadthing'
+      path: '/api/uploadthing'
+      fullPath: '/api/uploadthing'
+      preLoaderRoute: typeof ApiUploadthingServerRouteImport
       parentRoute: typeof rootServerRouteImport
     }
   }
@@ -129,14 +95,12 @@ declare module '@tanstack/react-start/server' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  DemoStartApiRequestRoute: DemoStartApiRequestRoute,
-  DemoStartServerFuncsRoute: DemoStartServerFuncsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
 const rootServerRouteChildren: RootServerRouteChildren = {
-  ApiDemoNamesServerRoute: ApiDemoNamesServerRoute,
+  ApiUploadthingServerRoute: ApiUploadthingServerRoute,
 }
 export const serverRouteTree = rootServerRouteImport
   ._addFileChildren(rootServerRouteChildren)

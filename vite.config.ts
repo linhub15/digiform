@@ -13,6 +13,7 @@ const config = defineConfig({
     tailwindcss(),
     tanstackStart({
       target: "cloudflare-module",
+      customViteReactPlugin: true,
     }),
     viteReact(),
   ],
