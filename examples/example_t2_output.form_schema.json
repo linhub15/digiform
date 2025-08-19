@@ -1,0 +1,190 @@
+{
+    "title": "T2 Short Return Form",
+    "fields": [
+        {
+            "label": "Corporation's Name",
+            "name": "corporation_name",
+            "type": "text"
+        },
+        {
+            "label": "Business Number",
+            "name": "business_number",
+            "type": "text"
+        },
+        {
+            "label": "Tax Year Start",
+            "name": "tax_year_start",
+            "type": "date"
+        },
+        {
+            "label": "Tax Year End",
+            "name": "tax_year_end",
+            "type": "date"
+        },
+        {
+            "label": "Address of Head Office",
+            "name": "head_office_address",
+            "type": "text"
+        },
+        {
+            "label": "City (Head Office)",
+            "name": "head_office_city",
+            "type": "text"
+        },
+        {
+            "label": "Province/State (Head Office)",
+            "name": "head_office_province_state",
+            "type": "text"
+        },
+        {
+            "label": "Country (Other than Canada)",
+            "name": "head_office_country",
+            "type": "text"
+        },
+        {
+            "label": "Postal/ZIP Code (Head Office)",
+            "name": "head_office_postal_zip",
+            "type": "text"
+        },
+        {
+            "label": "Mailing Address",
+            "name": "mailing_address",
+            "type": "text"
+        },
+        {
+            "label": "City (Mailing)",
+            "name": "mailing_city",
+            "type": "text"
+        },
+        {
+            "label": "Province/State (Mailing)",
+            "name": "mailing_province_state",
+            "type": "text"
+        },
+        {
+            "label": "Country (Mailing, Other than Canada)",
+            "name": "mailing_country",
+            "type": "text"
+        },
+        {
+            "label": "Postal/ZIP Code (Mailing)",
+            "name": "mailing_postal_zip",
+            "type": "text"
+        },
+        {
+            "label": "Location of Books and Records",
+            "name": "books_records_location",
+            "type": "text"
+        },
+        {
+            "label": "City (Books and Records)",
+            "name": "books_records_city",
+            "type": "text"
+        },
+        {
+            "label": "Province/State (Books and Records)",
+            "name": "books_records_province_state",
+            "type": "text"
+        },
+        {
+            "label": "Country (Books and Records, Other than Canada)",
+            "name": "books_records_country",
+            "type": "text"
+        },
+        {
+            "label": "Postal/ZIP Code (Books and Records)",
+            "name": "books_records_postal_zip",
+            "type": "text"
+        },
+        {
+            "label": "Type of Corporation at Year End",
+            "name": "corporation_type",
+            "type": "text"
+        },
+        {
+            "label": "Exempt from Tax Under Section 149",
+            "name": "tax_exempt_section_149",
+            "type": "text"
+        },
+        {
+            "label": "Acquisition of Control Since Tax Year Start",
+            "name": "acquisition_of_control",
+            "type": "text"
+        },
+        {
+            "label": "Date Control Was Acquired",
+            "name": "date_control_acquired",
+            "type": "date"
+        },
+        {
+            "label": "Deemed Tax Year-End According to Subsection 249(3.1)",
+            "name": "deemed_tax_year_end",
+            "type": "text"
+        },
+        {
+            "label": "Is the Corporation a Professional Corporation in a Partnership?",
+            "name": "professional_corporation_partnership",
+            "type": "text"
+        },
+        {
+            "label": "First Year of Filing after Incorporation?",
+            "name": "first_year_filing_incorporation",
+            "type": "text"
+        },
+        {
+            "label": "First Year of Filing after Amalgamation?",
+            "name": "first_year_filing_amalgamation",
+            "type": "text"
+        },
+        {
+            "label": "Final Tax Year before Amalgamation?",
+            "name": "final_tax_year_amalgamation",
+            "type": "text"
+        },
+        {
+            "label": "Final Return up to Dissolution?",
+            "name": "final_return_dissolution",
+            "type": "text"
+        },
+        {
+            "label": "Net Income (Loss) for Income Tax Purposes",
+            "name": "net_income_loss",
+            "type": "number"
+        },
+        {
+            "label": "Provincial/Territorial Jurisdiction",
+            "name": "provincial_territorial_jurisdiction",
+            "type": "text"
+        },
+        {
+            "label": "Tax Instalments Paid",
+            "name": "tax_instalments_paid",
+            "type": "number"
+        },
+        {
+            "label": "Is the Corporation Inactive?",
+            "name": "corporation_inactive",
+            "type": "text"
+        },
+        {
+            "label": "Principal Products/Services and Revenue Percentage",
+            "name": "principal_products_services_revenue",
+            "type": "text"
+        },
+        {
+            "label": "Did You Have Subcontractors During the Tax Year?",
+            "name": "subcontractors_during_tax_year",
+            "type": "text"
+        },
+        {
+            "label": "Tax Preparer EFILE Number",
+            "name": "tax_preparer_efile_number",
+            "type": "text"
+        },
+        {
+            "label": "Language of Correspondence",
+            "name": "language_of_correspondence",
+            "type": "text"
+        }
+    ]
+}

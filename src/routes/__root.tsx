@@ -1,4 +1,5 @@
 import { createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
+import { PostHogProvider } from "posthog-js/react";
 
 import appCss from "../styles.css?url";
 
@@ -34,7 +35,17 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <HeadContent />
       </head>
       <body>
-        {children}
+        <PostHogProvider
+          apiKey={import.meta.env.VITE_PUBLIC_POSTHOG_KEY}
+          options={{
+            api_host: import.meta.env.VITE_PUBLIC_POSTHOG_HOST,
+            defaults: "2025-05-24",
+            capture_exceptions: true,
+            debug: import.meta.env.MODE === "development",
+          }}
+        >
+          {children}
+        </PostHogProvider>
         <Scripts />
       </body>
     </html>

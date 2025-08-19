@@ -9,7 +9,7 @@ const auth = (req: Request) => ({ id: "fakeId" }); // Fake auth function
 export const uploadRouter = {
   // Define as many FileRoutes as you like, each with a unique routeSlug
   imageUploader: f({
-    image: {
+    pdf: {
       /**
        * For full list of options and defaults, see the File Route API reference
        * @see https://docs.uploadthing.com/file-routes#route-config
@@ -17,13 +17,12 @@ export const uploadRouter = {
       maxFileSize: "4MB",
       maxFileCount: 1,
     },
-  })
+  }, { awaitServerData: true })
     // Set permissions and file types for this FileRoute
     .middleware(async ({ req }) => {
       // This code runs on your server before upload
       const user = await auth(req);
 
-      console.log(user);
       // If you throw, the user will not be able to upload
       if (!user) throw new UploadThingError("Unauthorized");
 
@@ -32,9 +31,6 @@ export const uploadRouter = {
     })
     .onUploadComplete(async ({ metadata, file }) => {
       // This code RUNS ON YOUR SERVER after upload
-      console.log("Upload complete for userId:", metadata.userId);
-
-      console.log("file url", file.ufsUrl);
 
       // !!! Whatever is returned here is sent to the clientside `onClientUploadComplete` callback
       return { uploadedBy: metadata.userId };

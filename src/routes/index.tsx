@@ -1,4 +1,4 @@
-import { Uploader } from "@/lib/uploadthing/uploader";
+import { DigiformUploader } from "@/features/generate_form/digiform_uploader";
 import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/")({
@@ -14,7 +14,7 @@ function App() {
       <p>Use AI to convert your PDF form to an online form.</p>
 
       <div>
-        <Uploader />
+        <DigiformUploader />
       </div>
     </div>
   );
