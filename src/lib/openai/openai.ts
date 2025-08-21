@@ -1,4 +1,5 @@
 import { OpenAI } from "openai";
+import { zodTextFormat } from "openai/helpers/zod";
 import { z } from "zod";
 
 const apiKey = process.env.OPENAI_API_KEY; // Set your API key in env
@@ -14,7 +15,7 @@ const formSchema = z.object({
 });
 
 export async function aiExtractFormSchema(fileUrl: string) {
-  const response = await openai.responses.create(
+  const response = await openai.responses.parse(
     {
       model: "gpt-4o",
       instructions: [
@@ -30,12 +31,7 @@ export async function aiExtractFormSchema(fileUrl: string) {
         },
       ],
       text: {
-        format: {
-          type: "json_schema",
-          name: "form_schema",
-          strict: true,
-          schema: z.toJSONSchema(formSchema, { target: "draft-7" }),
-        },
+        format: zodTextFormat(formSchema, "form"),
       },
     },
   );

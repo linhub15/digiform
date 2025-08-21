@@ -12,6 +12,8 @@ import { createServerRootRoute } from '@tanstack/react-start/server'
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as HistoryIndexRouteImport } from './routes/history/index'
+import { Route as HistorySlugRouteImport } from './routes/history/$slug'
 import { ServerRoute as ApiUploadthingServerRouteImport } from './routes/api/uploadthing'
 
 const rootServerRouteImport = createServerRootRoute()
@@ -19,6 +21,16 @@ const rootServerRouteImport = createServerRootRoute()
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HistoryIndexRoute = HistoryIndexRouteImport.update({
+  id: '/history/',
+  path: '/history/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HistorySlugRoute = HistorySlugRouteImport.update({
+  id: '/history/$slug',
+  path: '/history/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApiUploadthingServerRoute = ApiUploadthingServerRouteImport.update({
@@ -29,24 +41,32 @@ const ApiUploadthingServerRoute = ApiUploadthingServerRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/history/$slug': typeof HistorySlugRoute
+  '/history': typeof HistoryIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/history/$slug': typeof HistorySlugRoute
+  '/history': typeof HistoryIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/history/$slug': typeof HistorySlugRoute
+  '/history/': typeof HistoryIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/history/$slug' | '/history'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/history/$slug' | '/history'
+  id: '__root__' | '/' | '/history/$slug' | '/history/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  HistorySlugRoute: typeof HistorySlugRoute
+  HistoryIndexRoute: typeof HistoryIndexRoute
 }
 export interface FileServerRoutesByFullPath {
   '/api/uploadthing': typeof ApiUploadthingServerRoute
@@ -79,6 +99,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/history/': {
+      id: '/history/'
+      path: '/history'
+      fullPath: '/history'
+      preLoaderRoute: typeof HistoryIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/history/$slug': {
+      id: '/history/$slug'
+      path: '/history/$slug'
+      fullPath: '/history/$slug'
+      preLoaderRoute: typeof HistorySlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 declare module '@tanstack/react-start/server' {
@@ -95,6 +129,8 @@ declare module '@tanstack/react-start/server' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  HistorySlugRoute: HistorySlugRoute,
+  HistoryIndexRoute: HistoryIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

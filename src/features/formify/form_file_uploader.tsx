@@ -1,13 +1,13 @@
 import { useServerFn } from "@tanstack/react-start";
-import { UploadDropzone } from "../../lib/uploadthing/upload_components";
-import { generateFormSchemaFn } from "./generate_form_schema.fn";
+import { UploadDropzone } from "@/lib/uploadthing/upload_components";
+import { formifyFn } from "./formify";
 import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
 
-export function DigiformUploader() {
+export function FormFileUploader() {
   const generateFormSchema = useGenerateFormSchema();
   const [loading, setLoading] = useState(false);
-  const [schema, setSchema] = useState("");
+  const [schema, setSchema] = useState<Record<string, unknown> | null>(null);
 
   const handleUploadComplete = async (url?: string) => {
     setLoading(true);
@@ -43,7 +43,7 @@ export function DigiformUploader() {
 }
 
 function useGenerateFormSchema() {
-  const generateFormSchema = useServerFn(generateFormSchemaFn);
+  const generateFormSchema = useServerFn(formifyFn);
 
   return useMutation({
     mutationFn: async (pdfUrl: string) => {
