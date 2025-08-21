@@ -31,9 +31,11 @@ function RouteComponent() {
         </div>
 
         <div>
-          <h2 className="text-lg text-center py-8">Form Schema</h2>
+          <h2 className="text-lg text-center py-8">
+            Form Schema - <code>{form?.formSchemaGenerationModel}</code>
+          </h2>
           <pre className="bg-gray-100 rounded p-4">
-        {JSON.stringify(form?.formSchema, null, 2)  }
+            {JSON.stringify(form?.formSchema, null, 2)}
           </pre>
         </div>
 

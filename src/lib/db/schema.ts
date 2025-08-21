@@ -12,6 +12,7 @@ export const formProject = pgTable("project", {
   ...auditColumns,
   slug: text("slug").notNull().unique().$default(() => nanoid(6)),
   fileUrl: text("file_url").notNull(),
+  formSchemaGenerationModel: text("form_schema_generation_model"),
   formSchemaGeneratedAt: timestamp("form_schema_generated_at"),
   // biome-ignore lint/suspicious/noExplicitAny: <explanation>
   formSchema: jsonb("form_schema").$type<Record<string, any>>(),

@@ -23,6 +23,7 @@ export const formifyFn = createServerFn()
       .set({
         formSchema: formSchema,
         formSchemaGeneratedAt: new Date(),
+        formSchemaGenerationModel: response.model,
       })
       .where(eq(formProject.id, inserted.id));
 
