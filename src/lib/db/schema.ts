@@ -9,10 +9,11 @@ export const auditColumns = {
 
 export const formProject = pgTable("project", {
   id: uuid("id").primaryKey().defaultRandom(),
-  slug: text("slug").notNull().unique().$default(() => nanoid(6)),
   ...auditColumns,
+  slug: text("slug").notNull().unique().$default(() => nanoid(6)),
   fileUrl: text("file_url").notNull(),
   formSchemaGeneratedAt: timestamp("form_schema_generated_at"),
+  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
   formSchema: jsonb("form_schema").$type<Record<string, any>>(),
   email: text("email"),
 });

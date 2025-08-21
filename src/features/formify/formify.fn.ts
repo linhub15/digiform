@@ -1,5 +1,5 @@
-import { db } from "@/lib/database/db";
-import { formProject } from "@/lib/database/schema";
+import { db } from "@/lib/db/db_middleware";
+import { formProject } from "@/lib/db/schema";
 import { aiExtractFormSchema } from "@/lib/openai/openai";
 import { createServerFn } from "@tanstack/react-start";
 import { eq } from "drizzle-orm";
@@ -9,8 +9,10 @@ type GenerateFormSchemaRequest = {
 };
 
 export const formifyFn = createServerFn()
+  .middleware([db])
   .validator((request: GenerateFormSchemaRequest) => request)
-  .handler(async ({ data }) => {
+  .handler(async ({ context, data }) => {
+    const { db } = context;
     const [inserted] = await db.insert(formProject).values({
       fileUrl: data.pdfUrl,
     }).returning({ id: formProject.id });

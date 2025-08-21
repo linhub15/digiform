@@ -1,6 +1,6 @@
 import { useServerFn } from "@tanstack/react-start";
 import { UploadDropzone } from "@/lib/uploadthing/upload_components";
-import { formifyFn } from "./formify";
+import { formifyFn } from "./formify.fn";
 import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
 
