@@ -1,11 +1,9 @@
-import { db } from "@/lib/db/db_middleware";
+import { db } from "@/lib/db/database";
 import { createServerFn } from "@tanstack/react-start";
 
 export const getFormFn = createServerFn()
-  .middleware([db])
   .validator((request: { slug: string }) => request)
-  .handler(async ({ context, data }) => {
-    const { db } = context;
+  .handler(async ({ data }) => {
     const form = await db.query.formProject.findFirst({
       where: (f, { eq }) => eq(f.slug, data.slug),
     });

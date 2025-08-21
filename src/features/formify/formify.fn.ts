@@ -1,4 +1,4 @@
-import { db } from "@/lib/db/db_middleware";
+import { db } from "@/lib/db/database";
 import { formProject } from "@/lib/db/schema";
 import { aiExtractFormSchema } from "@/lib/openai/openai";
 import { createServerFn } from "@tanstack/react-start";
@@ -9,10 +9,8 @@ type GenerateFormSchemaRequest = {
 };
 
 export const formifyFn = createServerFn()
-  .middleware([db])
   .validator((request: GenerateFormSchemaRequest) => request)
-  .handler(async ({ context, data }) => {
-    const { db } = context;
+  .handler(async ({ data }) => {
     const [inserted] = await db.insert(formProject).values({
       fileUrl: data.pdfUrl,
     }).returning({ id: formProject.id });
