@@ -1,5 +1,5 @@
 import { getFormFn } from "@/features/history/get_form.fn";
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/history/$slug")({
   loader: async ({ params }) => {
@@ -12,10 +12,7 @@ function RouteComponent() {
   const form = Route.useLoaderData();
 
   return (
-    <div className="p-2">
-      <Link className="border p-4" to="/history">
-        All forms
-      </Link>
+    <div>
       <div className="flex p-4 gap-8">
         <div>
           <h2 className="text-lg text-center py-8">Original Form File</h2>
