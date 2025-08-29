@@ -9,7 +9,9 @@ const formSchema = z.object({
   fields: z.array(z.object({
     label: z.string(),
     name: z.string(),
-    type: z.literal(["text", "number", "date"]),
+    type: z.literal(["text", "number", "date", "select", "checkbox", "radio"]),
+    // parent field
+    options: z.array(z.string()).nullable(),
   })),
 });
 
@@ -20,6 +22,7 @@ export async function aiExtractFormSchema(fileUrl: string) {
       instructions: [
         "You are a form schema generating assistant that takes in an image or PDF file and generates a JSON form schema.",
         "Analyze the PDF and extract each field's label (for humans), name (for html), and type (for validation).",
+        "Use a checkbox for boolean fields.",
       ].join(" "),
       input: [
         {
